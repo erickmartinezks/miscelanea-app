@@ -1,0 +1,132 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Alta Producto</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div class="col-8">
+			
+			<form th:action="@{/inventarios/productos}" th:object="${producto}" method="POST">
+				
+				<input type="hidden" th:field="*{id}">
+				
+				<!-- Nombre -->
+				<div>
+					Nombre:<input type="text" th:field="*{nombre}" placeholder="Nombre de producto(*)" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('nombre')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('nombre')}" th:text="'Nombre ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Descripcion-->
+				<div>
+					Descripción:<input type="text" th:field="*{descripcion}" placeholder="Descripción" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('descripcion')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('descripcion')}" th:text="'Descipción ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Precio -->
+				<div>
+					Precio:<input type="number" min="0.00" step="any" th:field="*{precio}" placeholder="Precio" value="0.00" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('precio')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('precio')}" th:text="'Precio ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Stock -->
+				<div>
+					Stock:<input type="number" min="0" th:field="*{stock}" placeholder="Cantidad en stock del producto" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('stock')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('stock')}" th:text="'Stock ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Categoria -->
+				<!-- 
+				Categoría
+				<select th:field="*{categoriaId}" class="form-control">
+					<option th:each="tempCategoria : ${categorias}"
+							th:value="${tempCategoria.id}"
+							th:utext="${tempCategoria.nombre}"/>
+				</select>
+				
+				<div th:if="${#fields.hasErrors('categoriaId')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('categoriaId')}" th:text="'Categoria ' + ${err}">
+					</ul>
+				</div>
+				-->
+				<div>
+					Categoría
+					<select th:field="*{categoria.id}" class="form-control">
+						<option th:each="categoria : ${categorias}"
+								th:value="${categoria.id}"
+								th:utext="${categoria.nombre}"/>
+					</select>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('categoria.id')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('categoria.id')}" th:text="'Categoria ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- 
+				<div>
+					Categoria:<input type="text" th:field="*{nombre}" placeholder="Nombre de producto(*)" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('nombre')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('nombre')}" th:text="'Nombre ' + ${err}">
+					</ul>
+				</div>
+				-->
+				<br>
+				<div>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+				</div>
+				
+			</form>
+			
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+</body>
+
+</html>

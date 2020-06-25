@@ -1,0 +1,71 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Productos</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div>
+
+			<a th:href="@{/inventarios/showFormForAdd}" class="btn btn-info">Alta producto</a>
+			
+			<table class="table table-bordered table-stripped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Id</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Precio</th>
+						<th>Stock</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tempProducto : ${productos}">
+						<td th:text="${tempProducto.id}"/>
+						<td th:text="${tempProducto.nombre}"/>
+						<td th:text="${tempProducto.descripcion}"/>
+						<td th:text="${tempProducto.precio}"/>
+						<td th:text="${tempProducto.stock}"/>
+						<td>
+							<a th:href="@{/inventarios/showFormForUpdate(productoId=${tempProducto.id})}"
+								class="btn btn-info btn-sm">
+								Editar
+							</a>
+							<a th:href="@{/inventarios/delete(productoId=${tempProducto.id})}"
+								class="btn btn-danger btn-sm"
+								onClick="if(!(confirm('¿Desea eliminar este producto?'))) return false">
+								Delete
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+</body>
+
+</html>
