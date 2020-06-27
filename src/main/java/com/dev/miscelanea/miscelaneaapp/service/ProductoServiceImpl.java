@@ -11,7 +11,7 @@ import com.dev.miscelanea.miscelaneaapp.dao.CategoriaDAO;
 import com.dev.miscelanea.miscelaneaapp.dao.ProductoDAO;
 import com.dev.miscelanea.miscelaneaapp.entity.Categoria;
 import com.dev.miscelanea.miscelaneaapp.entity.Producto;
-import com.dev.miscelanea.miscelaneaapp.ui.UIProducto;
+import com.dev.miscelanea.miscelaneaapp.uiconstraints.UIProducto;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -24,17 +24,38 @@ public class ProductoServiceImpl implements ProductoService {
 	
 	@Transactional
 	@Override
+	public List<Producto> findAll() {
+		
+		return productoDAO.findAll();
+	}
+	
+	@Transactional
+	@Override
+	public Producto findById(int id) {
+		
+		return productoDAO.findById(id);
+	}
+
+	@Transactional
+	@Override
+	public Producto findByCodigo(String codigo) {
+
+		return productoDAO.findByCodigo(codigo);
+	}
+	
+	@Transactional
+	@Override
 	public void save(UIProducto producto) {
 
 		Producto oProducto = new Producto();
 		try {
 			oProducto.setId(producto.getId());
+			oProducto.setCodigo(producto.getCodigo());
 			oProducto.setNombre(producto.getNombre());
 			oProducto.setDescripcion(producto.getDescripcion());
 			oProducto.setPrecio(producto.getPrecio());
 			oProducto.setStock(producto.getStock());
 			oProducto.setCategoria(producto.getCategoria());
-			//oProducto.setCategoria(categoriaDAO.findCategoriaById(Integer.parseInt(producto.getCategoriaId())));
 			
 			productoDAO.save(oProducto);
 		
@@ -45,16 +66,10 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Transactional
 	@Override
-	public List<Producto> findAll() {
+	public void save(Producto producto) {
 		
-		return productoDAO.findAll();
-	}
-
-	@Transactional
-	@Override
-	public Producto findById(int id) {
+		productoDAO.save(producto);
 		
-		return productoDAO.findById(id);
 	}
 
 	@Transactional
@@ -63,5 +78,6 @@ public class ProductoServiceImpl implements ProductoService {
 		
 		productoDAO.deleteProductoById(id);
 	}
+
 
 }

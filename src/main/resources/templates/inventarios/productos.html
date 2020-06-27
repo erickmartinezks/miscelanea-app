@@ -24,13 +24,15 @@
 
 		<div>
 
-			<a th:href="@{/inventarios/showFormForAdd}" class="btn btn-info">Alta producto</a>
+			<a th:href="@{/inventarios/productos/alta-producto}" class="btn btn-info">Alta producto</a>
 			
 			<table class="table table-bordered table-stripped">
 				<thead class="thead-dark">
 					<tr>
-						<th>Id</th>
+<!-- 						<th>Id</th> -->
+						<th>Código</th>
 						<th>Nombre</th>
+						<th>Categoría</th>
 						<th>Descripción</th>
 						<th>Precio</th>
 						<th>Stock</th>
@@ -39,20 +41,22 @@
 				</thead>
 				<tbody>
 					<tr th:each="tempProducto : ${productos}">
-						<td th:text="${tempProducto.id}"/>
+<!-- 						<td th:text="${tempProducto.id}"/> -->
+						<td th:text="${tempProducto.codigo}"/>
 						<td th:text="${tempProducto.nombre}"/>
+						<td th:text="${tempProducto.categoria.nombre}"/>
 						<td th:text="${tempProducto.descripcion}"/>
 						<td th:text="${tempProducto.precio}"/>
 						<td th:text="${tempProducto.stock}"/>
 						<td>
-							<a th:href="@{/inventarios/showFormForUpdate(productoId=${tempProducto.id})}"
+							<a th:href="@{/inventarios/productos/editar-producto(productoId=${tempProducto.id})}"
 								class="btn btn-info btn-sm">
 								Editar
 							</a>
-							<a th:href="@{/inventarios/delete(productoId=${tempProducto.id})}"
+							<a th:href="@{/inventarios/productos/eliminar-producto(productoId=${tempProducto.id})}"
 								class="btn btn-danger btn-sm"
 								onClick="if(!(confirm('¿Desea eliminar este producto?'))) return false">
-								Delete
+								Eliminar
 							</a>
 						</td>
 					</tr>

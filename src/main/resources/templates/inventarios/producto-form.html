@@ -24,9 +24,24 @@
 
 		<div class="col-8">
 			
-			<form th:action="@{/inventarios/productos}" th:object="${producto}" method="POST">
+			<form th:action="@{/inventarios/productos/alta-producto}" th:object="${producto}" method="POST">
 				
 				<input type="hidden" th:field="*{id}">
+				
+				<!-- Codigo -->
+				<div>
+					Codigo:
+					<div th:switch="*{id}">
+						<input th:case="0" autofocus type="text" th:field="*{codigo}" placeholder="Código de producto(*)" class="form-control"/>
+						<input th:case="*" readonly autofocus type="text" th:field="*{codigo}" placeholder="Código de producto(*)" class="form-control"/>
+					</div>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('codigo')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('codigo')}" th:text="'' + ${err}">
+					</ul>
+				</div>
 				
 				<!-- Nombre -->
 				<div>

@@ -35,6 +35,7 @@ CREATE TABLE categorias(
 DROP TABLE IF EXISTS productos;
 CREATE TABLE productos(
 	id INT NOT NULL IDENTITY(1,1),
+	codigo VARCHAR(20) NOT NULL UNIQUE,
 	nombre VARCHAR(60) NOT NULL,
 	descripcion VARCHAR (80),
 	precio DECIMAL(19,4) DEFAULT 0.0000,
@@ -139,5 +140,3 @@ INSERT INTO usuarios (username, password) VALUES
 ('administrador', '$2y$12$E2VR8LhTwJZyORMPzOAvgeRPOWCiJLPmSfhM5gxwAefDsr2R/h0R6');
 
 INSERT INTO usuarios_roles (id_usuario, id_rol) VALUES (1,3), (2,2), (3,1);
-
-INSERT INTO productos (nombre, descripcion, precio, stock, id_categoria) VALUES ('producto de prueba', 'producto de prueba', 10.00, 5, 2);

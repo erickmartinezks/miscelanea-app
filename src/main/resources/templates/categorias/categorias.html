@@ -1,0 +1,97 @@
+<DOCTYPE html>
+<html xmlns:thymeleaf="http://www.thymeleaf.org">
+
+<head>
+<title>Categorias</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div>
+		
+			<a th:href="@{/inventarios/categorias/alta-categoria}" class="btn btn-info">Alta categoría</a>
+
+			<table class="table table-bordered table-stripper">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="tempCategoria : ${categorias}">
+						<td th:text="${tempCategoria.nombre}"/>
+						<td th:text="${tempCategoria.descripcion}"/>
+						<td>
+							<a th:href="@{/inventarios/categorias/editar-categoria(categoriaId=${tempCategoria.id})}"
+								class="btn btn-info btn-sm">
+								Editar
+							</a>
+							<a th:href="@{/inventarios/categorias/eliminar-categoria(categoriaId=${tempCategoria.id})}"
+								class="btn btn-danger btn-sm"
+								onClick="if(!(confirm('Si existen productos con ésta categoría, éstos cambiarán automaticamente a \'Sin categoria\' \n¿Realmente desea eliminar esta categoría?'))) return false">
+								Eliminar
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>	
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

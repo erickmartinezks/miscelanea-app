@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categorias")
@@ -21,13 +23,15 @@ public class Categoria {
 	@Column(name = "id")
 	private int id;
 
+	@Size(min=1, message="obligatorio")
+	@NotNull
 	@Column(name = "nombre")
 	private String nombre;
 
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL) // mappedBy = "<Nombre de variable en clase Producto>"
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REFRESH) // mappedBy = "<Nombre de variable en clase Producto>"
 	private List<Producto> productos;
 
 	public Categoria() {
@@ -88,6 +92,8 @@ public class Categoria {
 		return "Categoria [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", productos="
 				+ productos + "]";
 	}
+
+	
 
 	
 	

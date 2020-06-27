@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dev.miscelanea.miscelaneaapp.dao.CategoriaDAO;
+import com.dev.miscelanea.miscelaneaapp.dao.ProductoDAO;
 import com.dev.miscelanea.miscelaneaapp.entity.Categoria;
+import com.dev.miscelanea.miscelaneaapp.entity.Producto;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
@@ -16,17 +18,22 @@ public class CategoriaServiceImpl implements CategoriaService {
 	@Autowired
 	CategoriaDAO categoriaDAO;
 	
+	@Autowired
+	ProductoDAO productoDAO;
+	
+	@Transactional
 	@Override
-	public void save(Categoria categoria) {
-		// TODO Auto-generated method stub
-
+	public Categoria findById(int id) {
+		Categoria tempCategoria = categoriaDAO.findById(id);
+		
+		return tempCategoria;
 	}
 
 	@Transactional
 	@Override
-	public List<Categoria> getAllCategorias() {
+	public List<Categoria> findAll() {
 
-		List<Categoria> categorias = categoriaDAO.getAllCategorias();
+		List<Categoria> categorias = categoriaDAO.findAll();
 		
 		if(categorias == null) {
 			throw new RuntimeException("No se encontraron categorias.");
@@ -35,10 +42,29 @@ public class CategoriaServiceImpl implements CategoriaService {
 		return categorias;
 	}
 
+	@Transactional
+	@Override
+	public List<Producto> findProductosByIdCategoria(int id) {
+		
+		List<Producto> productos = categoriaDAO.findProductosByIdCategoria(id);
+		
+		return productos;
+	}
+	
+	@Transactional
+	@Override
+	public void save(Categoria categoria) {
+		
+		categoriaDAO.save(categoria);
+		
+	}
+	
+	@Transactional
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
 
+		categoriaDAO.deleteById(id);
+		
 	}
 
 }

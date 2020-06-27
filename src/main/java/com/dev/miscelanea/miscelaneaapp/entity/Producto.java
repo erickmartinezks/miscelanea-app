@@ -20,6 +20,9 @@ public class Producto {
 	@Column(name = "id")
 	private int id;
 
+	@Column(name = "codigo")
+	private String codigo;
+	
 	@Column(name = "nombre")
 	private String nombre;
 
@@ -40,7 +43,8 @@ public class Producto {
 		
 	}
 	
-	public Producto(String nombre, String descripcion, String precio, String stock, Categoria categoria) {
+	public Producto(String codigo, String nombre, String descripcion, String precio, String stock, Categoria categoria) {
+		this.codigo = codigo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
@@ -55,6 +59,14 @@ public class Producto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {

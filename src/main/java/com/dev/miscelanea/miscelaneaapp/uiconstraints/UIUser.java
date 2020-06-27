@@ -1,4 +1,4 @@
-package com.dev.miscelanea.miscelaneaapp.user;
+package com.dev.miscelanea.miscelaneaapp.uiconstraints;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,7 +8,7 @@ import com.dev.miscelanea.miscelaneaapp.validation.FieldMatch;
 @FieldMatch.List({
 	@FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
 })
-public class CrmUser {
+public class UIUser {
 
 	@NotNull(message = "Obligatorio")
 	@Size(min = 1, message = "Obligatorio")
@@ -22,7 +22,7 @@ public class CrmUser {
 	@Size(min = 1, message = "Obligatorio")
 	private String matchingPassword;
 	
-	public CrmUser() {
+	public UIUser() {
 		
 	}
 

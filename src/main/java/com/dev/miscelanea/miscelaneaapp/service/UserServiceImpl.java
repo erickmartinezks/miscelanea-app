@@ -17,7 +17,7 @@ import com.dev.miscelanea.miscelaneaapp.dao.RoleDao;
 import com.dev.miscelanea.miscelaneaapp.dao.UserDao;
 import com.dev.miscelanea.miscelaneaapp.entity.Rol;
 import com.dev.miscelanea.miscelaneaapp.entity.Usuario;
-import com.dev.miscelanea.miscelaneaapp.user.CrmUser;
+import com.dev.miscelanea.miscelaneaapp.uiconstraints.UIUser;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void save(CrmUser crmUser) {
+	public void save(UIUser crmUser) {
 
 		Usuario user = new Usuario();
 		// assign user details to the user object

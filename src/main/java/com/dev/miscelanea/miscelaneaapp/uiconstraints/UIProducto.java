@@ -1,4 +1,4 @@
-package com.dev.miscelanea.miscelaneaapp.ui;
+package com.dev.miscelanea.miscelaneaapp.uiconstraints;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -9,6 +9,10 @@ import com.dev.miscelanea.miscelaneaapp.entity.Categoria;
 public class UIProducto {
 
 	private int id;
+	
+	@NotNull
+	@Size(min = 1, max = 20, message = "Obligatorio")
+	private String codigo;
 	
 	@NotNull
 	@Size(min = 1, message = "Obligatorio")
@@ -38,6 +42,14 @@ public class UIProducto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
