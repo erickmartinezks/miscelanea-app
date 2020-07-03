@@ -11,7 +11,6 @@ public class LoginController {
 	@GetMapping("/login")
 	public String showLoginPage() {
 		
-		System.out.println("Dentro del metodo showLoginPage()");
 		return "login/login";
 	}
 

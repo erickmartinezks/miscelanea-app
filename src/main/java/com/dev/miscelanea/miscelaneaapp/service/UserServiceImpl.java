@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 			throw new RuntimeException("Nombre de usuario o contraseña incorrectos.");
 			//throw new UsernameNotFoundException("Nombre de usuario o contraseña incorrectos.");
 		}
-		System.out.println("Los roles: " + user.getRoles());
+		//System.out.println("Los roles: " + user.getRoles());
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), 
 				mapRolesToAuthorities(user.getRoles()));
 	}

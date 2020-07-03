@@ -52,11 +52,12 @@ CREATE TABLE proveedor(
 
 DROP TABLE IF EXISTS clientes;
 CREATE TABLE clientes(
-	id INT NOT NULL,
+	id INT NOT NULL IDENTITY(1,1),
 	nombre VARCHAR (60) NOT NULL,
 	apellidos VARCHAR (60) NOT NULL,
 	fecha_alta DATE NOT NULL,
-	domicilio VARCHAR(80)
+	domicilio VARCHAR(80),
+	activo Bit NOT NULL DEFAULT 1
 );
 
 DROP TABLE IF EXISTS pedidos;

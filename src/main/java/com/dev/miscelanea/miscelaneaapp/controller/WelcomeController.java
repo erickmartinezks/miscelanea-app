@@ -9,7 +9,7 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public String showWelcomePage() {
-		System.out.println("/ welcome-page");
+		//System.out.println("/ welcome-page");
 		return "welcome";
 	}
 	

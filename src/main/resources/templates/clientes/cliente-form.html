@@ -1,0 +1,129 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Alta Cliente</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+	
+	<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div class="col-8">
+			
+			<form th:action="@{/inventarios/clientes/alta-cliente}" th:object="${cliente}" method="POST">
+				
+				<input type="hidden" th:field="*{id}">
+				
+				<!-- Id -->
+				<div th:switch="*{id}">
+					<div th:case="0"></div> 
+<!-- 					<input th:case="0" autofocus type="text" th:field="*{id}" placeholder="Código de producto(*)" class="form-control"/> -->
+					<div th:case="*">
+						Id:<input readonly autofocus type="text" th:field="*{id}" placeholder="Id" class="form-control"/>
+					</div>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('id')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('id')}" th:text="'Id ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Nombre -->
+				<div>
+					Nombre(s):<input type="text" th:field="*{nombre}" placeholder="Nombre de cliente(*)" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('nombre')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('nombre')}" th:text="'Nombre ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Apellidos -->
+				<div>
+					Apellidos:<input type="text" th:field="*{apellidos}" placeholder="Apellidos" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('apellidos')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('apellidos')}" th:text="'Apellidos ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Fecha alta -->
+				<!-- No se dedicará más tiempo a desarrollo y/o validaciones de esta funcionalidad (leer README) -->
+				<div class="input-group date">
+                    Fecha Alta:<input type="text" class="" id="datepicker" autocomplete="off" th:field="*{fechaAlta}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+                <!-- 
+				<div>
+					Fecha alta:<input type="text" th:field="*{fechaAlta}" placeholder="Fecha Alta" class="form-control"/>
+				</div>
+				 -->
+				<div th:if="${#fields.hasErrors('fechaAlta')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('fechaAlta')}" th:text="'Fecha de Alta ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- Domicilio -->
+				<div>
+					Domicilio:<input type="text" th:field="*{domicilio}" placeholder="Domicilio" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('domicilio')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('domicilio')}" th:text="'Domicilio ' + ${err}">
+					</ul>
+				</div>
+				
+				<br>
+				<div>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+				</div>
+				
+			</form>
+			
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+	
+	<script type="text/javascript">
+	 $( "#datepicker" ).datepicker();
+	 //$("#datepicker").datepicker('setDate','01/01/1998');
+	 $(document).ready(function() {
+
+	     $('#datepicker').datepicker().on('changeDate', function(ev){
+	         $(this).datepicker('hide');
+	     });
+	 });
+	</script>
+</body>
+
+</html>

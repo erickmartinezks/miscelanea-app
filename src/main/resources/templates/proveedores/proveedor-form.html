@@ -1,0 +1,69 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Alta Proveedor</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div class="col-8">
+			
+			<form th:action="@{/inventarios/proveedores/alta-proveedor}" th:object="${proveedor}" method="POST">
+				
+				<input type="hidden" th:field="*{id}">
+				
+				<!-- Nombre -->
+				<div>
+					Nombre:<input type="text" th:field="*{nombre}" placeholder="Nombre de proveedor(*)" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('nombre')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('nombre')}" th:text="'Nombre ' + ${err}">
+					</ul>
+				</div>
+				
+				<!-- telefono -->
+				<div>
+					Teléfono:<input type="text" th:field="*{telefono}" placeholder="Teléfono" class="form-control"/>
+				</div>
+				
+				<div th:if="${#fields.hasErrors('telefono')}" style="margin-bottom: 25px" class="text-danger">
+					<ul>
+						<li th:each="err: ${#fields.errors('telefono')}" th:text="'Teléfono ' + ${err}">
+					</ul>
+				</div>
+				
+				<br>
+				<div>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+				</div>
+				
+			</form>
+			
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+</body>
+
+</html>

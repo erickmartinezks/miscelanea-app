@@ -1,0 +1,65 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Proveedores</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div>
+
+			<a th:href="@{/inventarios/proveedores/alta-proveedor}" class="btn btn-info">Alta proveedor</a>
+			
+			<table class="table table-bordered table-stripped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre</th>
+						<th>Teléfono</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tempProveedor : ${proveedores}">
+						<td th:text="${tempProveedor.nombre}"/>
+						<td th:text="${tempProveedor.telefono}"/>
+						<td>
+							<a th:href="@{/inventarios/proveedores/editar-proveedor(proveedorId=${tempProveedor.id})}"
+								class="btn btn-info btn-sm">
+								Editar
+							</a>
+							<a th:href="@{/inventarios/proveedores/eliminar-proveedor(proveedorId=${tempProveedor.id})}"
+								class="btn btn-danger btn-sm"
+								onClick="if(!(confirm('¿Desea eliminar este proveedor?'))) return false">
+								Eliminar
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+</body>
+
+</html>

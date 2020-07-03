@@ -1,4 +1,5 @@
 Tomar en cuenta:
+---Enfocado en Back-end principalmente ---
 La parte de front-end pudiera no estar completamente desarrollada o bien, no 
 tener una correcta estructura. Lo que me importa en este proyecto es que esta 
 parte sea funcional, que se muestre la información correctamente y se pueda 

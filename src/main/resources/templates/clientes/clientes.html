@@ -1,0 +1,71 @@
+<DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Clientes</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div th:replace="fragments/header :: header"></div>
+
+		<hr>
+
+		<div>
+
+			<a th:href="@{/inventarios/clientes/alta-cliente}" class="btn btn-info">Alta cliente</a>
+			
+			<table class="table table-bordered table-stripped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Id</th>
+						<th>Nombre (s)</th>
+						<th>Apellidos</th>
+						<th>Fecha de alta</th>
+						<th>Domicilio</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tempCliente : ${clientes}">
+						<td th:text="${tempCliente.id}"/>
+						<td th:text="${tempCliente.nombre}"/>
+						<td th:text="${tempCliente.apellidos}"/>
+						<td th:text="${tempCliente.fechaAlta}"/>
+						<td th:text="${tempCliente.domicilio}"/>
+						<td>
+							<a th:href="@{/inventarios/clientes/editar-cliente(clienteId=${tempCliente.id})}"
+								class="btn btn-info btn-sm">
+								Editar
+							</a>
+							<a th:href="@{/inventarios/clientes/eliminar-cliente(clienteId=${tempCliente.id})}"
+								class="btn btn-danger btn-sm"
+								onClick="if(!(confirm('¿Desea eliminar este cliente?'))) return false">
+								Eliminar
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		
+		<hr>
+		
+		<div th:replace="fragments/footer :: footer"></div>
+		
+	</div>
+</body>
+
+</html>

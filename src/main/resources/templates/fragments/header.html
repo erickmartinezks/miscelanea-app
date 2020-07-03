@@ -14,16 +14,16 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav mr-auto">
-					<div sec:authorize="hasRole('ROLE_GENERAL')">
-						<li class="nav-item active">
+					<p sec:authorize="hasRole('ROLE_GENERAL')">
+						<li class="nav-item">
 							<a class="nav-link" th:href="@{/general}">General
 								<span class="sr-only">(current)
 								</span>
 							</a>
 						</li>
-					</div>
+					</p>
 					
-					<div sec:authorize="hasRole('ROLE_INVENTARIOS')">
+					<p sec:authorize="hasRole('ROLE_INVENTARIOS')">
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/inventarios/productos}">Productos
 							</a>
@@ -32,14 +32,22 @@
 							<a class="nav-link" th:href="@{/inventarios/categorias}">Categorías
 							</a>
 						</li>
-					</div>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/inventarios/proveedores}">Proveedores
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/inventarios/clientes}">Clientes
+							</a>
+						</li>
+					</p>
 					
-					<div sec:authorize="hasRole('ROLE_ADMINISTRADOR')">
+					<p sec:authorize="hasRole('ROLE_ADMINISTRADOR')">
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/administrador}">Administrador
 							</a>
 						</li>
-					</div>
+					</p>
 					
 					<!-- 
 					<li class="nav-item active"><a class="nav-link" href="#">Home
